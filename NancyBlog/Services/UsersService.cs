@@ -27,12 +27,18 @@ namespace NancyBlog.Services
             _db.Users.Insert(user);
             return true;
         }
+
+        public User GetByUsername(string username)
+        {
+            return (User)_db.Users.FindByUsername(username);
+        }
     }
 
     public interface IUsersService
     {
         User Get(ObjectId id);
         User Get(string id);
+        User GetByUsername(string username);
         bool Create(User user);
     }
 }

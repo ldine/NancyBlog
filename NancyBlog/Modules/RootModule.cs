@@ -10,9 +10,10 @@ namespace NancyBlog.Modules
 {
     public class RootModule : NancyModule
     {
-        public RootModule(IUsersService usersService)
+        public RootModule(IPostsService postsService, IUsersService usersService)
         {
             Get["/"] = parameters => "Hello World!";
+            Get["/testpost"] = parameters => postsService.AuthorPost("Hello World", "Testing posting!", usersService.GetByUsername("LDine")).ToString();
         }
     }
 }
